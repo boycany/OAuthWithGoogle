@@ -1,6 +1,27 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const GoogleStrategy = require("passport-google-oauth20");
 const User = require("../models/user-model");
+
+/**
+ * Three pieces need to be configured to use Passport for authentication:
+ *
+ * 1. Authentication strategies
+ * 2. Application middleware
+ * 3. Sessions (optional)
+ */
+passport.serializeUser((user, done) => {
+  console.log("Serializing user now.");
+  done(null, user._id);
+  //_id 是 MongoDB 會為每一筆資料自動生成的 id
+});
+
+passport.deserializeUser((_id, done) => {
+  console.log("Deseraializing user now.");
+  User.findById({ _id }).then((user) => {
+    console.log("Found User.");
+    done(null, user);
+  });
+});
 
 passport.use(
   new GoogleStrategy(
@@ -11,7 +32,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       //passport callback:
-      console.log(profile);
+      // console.log(profile);
       User.findOne({ googleID: profile.id }).then((foundUser) => {
         //會檢查 MongoDB 有沒有這個 user data，沒有的話，就創建自己的一個 copy
         if (foundUser) {

@@ -12,6 +12,9 @@ const profileRoute = require("./routes/profile-route");
 //直接 require 就像是把 passport.js 寫的程式碼直接引用進來
 require("./config/passport");
 
+const cookieSession = require("cookie-session");
+const passport = require("passport");
+
 /*
     useNewUrlParser, useUnifiedTopology, useFindAndModify, and useCreateIndex are no longer supported options.
     Mongoose 6 always behaves as if useNewUrlParser, useUnifiedTopology, and useCreateIndex are true, 
@@ -29,6 +32,15 @@ mongoose
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//middleware 加入 cookie-session 套件功能，讓 user 的瀏覽器可以儲存 Cookies
+app.use(
+  cookieSession({
+    keys: [process.env.SECRET],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //如果 server 有接收到任何 request 會經過這個 middleware，會去檢查其中有沒有 /auth，有的話就會進入 authRoute
 app.use("/auth", authRoute);
