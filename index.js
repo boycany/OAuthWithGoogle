@@ -44,7 +44,7 @@ app.use(passport.session());
 
 //如果 server 有接收到任何 request 會經過這個 middleware，會去檢查其中有沒有 /auth，有的話就會進入 authRoute
 app.use("/auth", authRoute);
-
+//會去檢查 request url 其中有沒有 /profile，有的話就會進入 profileRoute
 app.use("/profile", profileRoute);
 
 app.get("/", (req, res) => {
