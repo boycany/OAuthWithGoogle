@@ -29,6 +29,7 @@ passport.deserializeUser((_id, done) => {
 
 passport.use(
   new LocalStrategy((username, password, done) => {
+    //因為 local 登入表單的兩個 input 欄位取名為 username (其實是填入 email) 和 password
     console.log(username, password);
     User.findOne({ email: username })
       .then((user) => {
