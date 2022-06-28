@@ -47,6 +47,17 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/auth/login",
+    failureFlash: "電子郵件或密碼輸入錯誤",
+  }),
+  (req, res) => {
+    res.redirect("/profile");
+  }
+);
+
 router.get("/logout", (req, res) => {
   req.logOut();
   res.redirect("/");

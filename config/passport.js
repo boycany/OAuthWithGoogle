@@ -1,6 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
+const LocalStrategy = require("passport-local");
 const User = require("../models/user-model");
+const bcrypt = require("bcrypt");
 
 /**
  * Three pieces need to be configured to use Passport for authentication:
@@ -23,6 +25,35 @@ passport.deserializeUser((_id, done) => {
   });
 });
 
+//Local 登入
+
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    console.log(username, password);
+    User.findOne({ email: username })
+      .then((user) => {
+        console.log("user :>> ", user);
+        if (!user) {
+          return done(null, false);
+        }
+        bcrypt.compare(password, user.password, function (err, result) {
+          if (err) {
+            return done(null, false);
+          }
+          if (!result) {
+            return done(null, false);
+          } else {
+            return done(null, user);
+          }
+        });
+      })
+      .catch((err) => {
+        return done(null, false);
+      });
+  })
+);
+
+//Google 登入
 passport.use(
   new GoogleStrategy(
     {
