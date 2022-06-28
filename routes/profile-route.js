@@ -3,8 +3,13 @@ const Post = require("../models/post-model");
 
 //創建一個叫 authCheck 的 Middleware
 const authCheck = (req, res, next) => {
-  console.log("req.user in authCheck Middleware: >>", req.user);
+  console.log("req.originalUrl :>> ", req.originalUrl);
+
+  // console.log("req.user in authCheck Middleware: >>", req.user);
   if (!req.isAuthenticated()) {
+    //抓取 user 本來想要進入的 url，然後存到 session 中
+    req.session.returnTo = req.originalUrl;
+    //再重新導向
     res.redirect("/auth/login");
   } else {
     next();

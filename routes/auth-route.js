@@ -54,7 +54,13 @@ router.post(
     failureFlash: "電子郵件或密碼輸入錯誤",
   }),
   (req, res) => {
-    res.redirect("/profile");
+    if (req.session.returnTo) {
+      let newPath = req.session.returnTo;
+      req.session.returnTo = "";
+      res.redirect(newPath);
+    } else {
+      res.redirect("/profile");
+    }
   }
 );
 
@@ -69,7 +75,14 @@ router.get(
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.redirect("/profile");
+  //如果 user 本來有指定進入的 url，等登入後就導向該 url
+  if (req.session.returnTo) {
+    let newPath = req.session.returnTo;
+    req.session.returnTo = "";
+    res.redirect(newPath);
+  } else {
+    res.redirect("/profile");
+  }
 });
 
 module.exports = router;
