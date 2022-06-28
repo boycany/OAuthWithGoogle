@@ -1,0 +1,20 @@
+<% console.log("error_msg:>>", error_msg, typeof error_msg) %>
+    <% console.log("success_msg:>>", success_msg, typeof "") %>
+
+        <% if (error_msg !="" ){ %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>
+                    <%= error_msg %>
+                </strong>
+            </div>
+            <% } else if (success_msg !="" ){ %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>
+                        <%= success_msg %>
+                    </strong>
+                </div>
+                <% } %>
+                    <!-- <h4>
+                Or... you have an account. Login here:
+            </h4>
+            <#% } %> -->
