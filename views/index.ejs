@@ -6,19 +6,19 @@
         <title>Home</title>
 </head>
 
-<body>
+<body style="overflow-y: hidden">
     <%- include("partials/nav") %>
-        <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">
-                    Project 5 - Google and Local Login System
+        <div class="p-5 mb-4 bg-light rounded-3" style="height: 100vh;">
+            <div class="container-lg py-5 d-flex justify-content-center flex-column align-items-center">
+                <h1 class="display-5 fw-bold mb-5 text-center">
+                    Google and Local Login System
                 </h1>
-                <p class="col-md-8 fs-4">
-                    Project 5 includes EJS, MongoDB Atlas, Passport.js, Authentication,
+                <p class="col-md-8 fs-4 mb-5 text-center">
+                    Project includes EJS, MongoDB, Passport.js, Authentication,
                     OAuth(Google Login Setup) and other examples.
                 </p>
                 <button class="btn btn-primary btn-lg" type="button">
-                    Learn how it works.
+                    Start Login
                 </button>
             </div>
         </div>

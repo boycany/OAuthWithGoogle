@@ -35,6 +35,8 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static("public"));
+
 //middleware 加入 cookie-session 套件功能，讓 user 的瀏覽器可以儲存 Cookies
 // app.use(
 //   cookieSession({
