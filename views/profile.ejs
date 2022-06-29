@@ -8,8 +8,9 @@
 
 <body>
     <%- include ("partials/nav") %>
-        <main class="container-lg py-5 d-flex justify-content-center flex-column align-items-center">
-            <table class="table text-center" style="width: 360px;">
+        <main class="container-lg py-5 d-flex justify-content-center flex-column align-items-center"
+            style="max-width: 360px;">
+            <table class="table text-center">
                 <tr>
                     <th colspan="2">
                         <h3>
@@ -37,7 +38,7 @@
             <h4 class="mt-4">貼文</h4>
             <% if(posts.length> 0){ %>
                 <% for(let i=0; i < posts.length; i++){ %>
-                    <div class="card mt-1" style="width: 18rem">
+                    <div class="card mt-1" style="max-width: 360px;">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <%= posts[i].title %>
