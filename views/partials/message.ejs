@@ -2,19 +2,19 @@
     <% console.log("success_msg:>>", success_msg, typeof "") %>
 
         <% if (error !="" ){ %>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
                 <strong>
                     <%= error %>
                 </strong>
             </div>
             <% } else if (success_msg !="" ){ %>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                     <strong>
                         <%= success_msg %>
                     </strong>
                 </div>
                 <% } else if (error_msg !="" ){ %>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
                         <strong>
                             <%= error_msg %>
                         </strong>

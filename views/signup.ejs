@@ -8,9 +8,10 @@
 
 <body>
   <%- include ("partials/nav") %>
-    <main style="padding: 3rem">
-      <%- include ("partials/message") %>
-        <form action="/auth/signup" method="POST">
+    <main class="container-lg d-flex flex-column justify-content-center align-items-center" style="padding: 3rem">
+      <h4>Sign up with your email:</h4>
+      <form class="text-center border border-secondary p-4 mt-2" action="/auth/signup" method="POST">
+        <%- include ("partials/message") %>
           <div class="form-group">
             <label for="exampleUsername">Username</label>
             <input name="name" type="text" class="form-control" id="exampleUsername" required />
@@ -31,7 +32,7 @@
           </div>
           <br />
           <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+      </form>
     </main>
 </body>
 
